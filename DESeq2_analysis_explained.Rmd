@@ -1,0 +1,56 @@
+---
+title: "Comprehensive DESeq2 RNA-Seq Analysis: Code, Rationale, and Biological Insights"
+author: "[Your Name]"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Introduction
+This document provides a detailed explanation of the DESeq2-based RNA-Seq analysis pipeline, including code rationale, visualization choices, and biological interpretation of outputs. The workflow is designed to maximize exploratory data analysis (EDA) and result interpretability, supporting manuscript preparation with a rich set of figures.
+
+# Data Import and Preprocessing
+- **Importation**: Raw count data and experimental design are loaded. Only relevant samples are selected.
+- **Filtering**: Genes with low expression (less than 5 samples with >10 counts) are removed to reduce noise and improve statistical power.
+- **Metadata**: Sample metadata is constructed for downstream analysis.
+
+# Normalization and Quality Control
+- **Normalization**: DESeq2's size factor normalization corrects for library size differences.
+- **Boxplots**: Boxplots before and after normalization visualize the effect of normalization on count distributions, ensuring comparability across samples.
+- **Descriptive Statistics**: Summary statistics (mean, median, SD, etc.) for each sample are calculated and visualized, highlighting sample variability and potential outliers.
+
+# Exploratory Data Analysis (EDA)
+- **Dispersion Plot**: Visualizes gene-wise dispersion estimates, showing the relationship between mean expression and variance. This helps assess model fit and the presence of outlier genes.
+- **MA Plot**: Shows log2 fold changes versus mean expression, highlighting differentially expressed genes. Plotted using ggplot2 for the tidyverse workflow, ensuring manuscript-quality output.
+- **P-value Histogram**: Assesses the distribution of p-values, indicating the presence of true signal versus noise.
+- **Mean-SD Plot (raw vs rlog)**: Evaluates variance stabilization before and after rlog transformation, ensuring suitability for downstream multivariate analyses.
+- **Violin Plots**: True violin plots (not line plots) for the top 20 highly expressed genes are shown for both raw and normalized counts, providing a clear view of expression distributions across samples.
+
+# Dimensionality Reduction and Clustering
+- **PCA Plot**: Principal Component Analysis visualizes sample clustering by condition, revealing batch effects or biological separation. In the tidyverse workflow, PCA is plotted with ggplot2 using the output of plotPCA(..., returnData=TRUE), with percent variance annotated on axes and sample names labeled.
+- **Sample Distance Heatmap**: Heatmap of Euclidean distances between samples, providing an overview of sample similarity.
+- **Gene Clustering Heatmap**: Heatmap of the most variable genes, showing co-expression patterns and sample relationships. Both gene and sample dendrograms are shown in the base R workflow; tidyverse workflow uses column dendrograms.
+
+# Differential Expression Analysis
+- **DESeq2 Modeling**: The DESeq2 pipeline models count data, estimates dispersions, and tests for differential expression between conditions.
+- **Annotation**: Gene IDs are mapped to gene symbols and Entrez IDs for interpretability.
+- **Export**: All results and significant gene lists are exported for further analysis or reporting.
+
+# Pathway and Functional Enrichment
+- **Reactome Enrichment**: Genes are mapped to Reactome pathways. For each pathway, a t-test assesses whether the average log2 fold change differs from zero, identifying pathways with coordinated expression changes.
+- **Filtering**: Only pathways with 20-80 genes are considered to avoid overly broad or narrow categories.
+- **Export**: Enrichment results are exported for reporting.
+
+# Biological Insights
+- **Normalization**: Boxplots and descriptive stats confirm successful normalization, with reduced inter-sample variability.
+- **Dispersion**: The dispersion plot should show a decreasing trend with increasing mean, indicating proper variance modeling.
+- **MA Plot**: Genes with large fold changes and low p-values are candidates for biological follow-up. Tidyverse workflow uses ggplot2 for enhanced clarity.
+- **PCA/Heatmaps**: Clear separation of conditions in PCA and clustering heatmaps supports the presence of strong biological signal. Tidyverse PCA plots include percent variance and sample labels.
+- **Enrichment**: Significant Reactome pathways suggest biological processes most affected by the experimental condition, guiding hypothesis generation.
+
+# Recommendations
+- **Visualization**: Multiple plot types (boxplots, violin, heatmaps, PCA) provide complementary views, supporting robust manuscript figures. Violin plots are now true violin plots, not line plots.
+- **Reporting**: Exported CSVs allow for easy integration with supplementary materials.
+- **Interpretation**: Focus on genes and pathways with strong statistical support and biological relevance.
+
+# Conclusion
+This pipeline provides a comprehensive, publication-ready analysis of RNA-Seq data, maximizing both statistical rigor and visual interpretability. The included code and figures can be directly used in manuscripts to support key findings and reduce narrative length. All visualizations are now manuscript-ready, with sample names and percent variance annotated where appropriate, and violin plots accurately represent gene expression distributions.

@@ -8,8 +8,7 @@ Thumbs.db
 .Ruserdata
 *.Rproj
 
-# Generated outputs
-*.csv
+# Large raw data files
 *.tsv
 
 # Editor files
