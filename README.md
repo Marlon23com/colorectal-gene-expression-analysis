@@ -1,35 +1,24 @@
 # Colorectal Cancer Differential Gene Expression Analysis
 
-This project focuses on differential expression analysis using RNA-seq count data for cancer versus normal tissue samples. The workflow uses DESeq2 and R to analyze gene expression changes and identify statistically significant differentially expressed genes (DEGs).
+This project analyzes RNA-seq count data comparing colorectal cancer and normal tissue samples. The workflow uses DESeq2 in R to detect differentially expressed genes and summarize the key biological findings from the dataset.
 
 ## Project overview
 
-The analysis compares:
-- cancer samples
-- normal tissue samples
+The analysis compares cancer and normal samples using a standard differential expression pipeline, including:
+- data preparation and sample labeling
+- normalization and quality checks
+- DESeq2 modeling for differential expression
+- identification of significant genes
+- output tables and exploratory visualizations
 
-The workflow includes data preprocessing, normalization, DESeq2 modeling, visualization, and DEG identification.
+This project demonstrates practical bioinformatics skills in RNA-seq analysis and interpretation of gene expression changes associated with cancer.
 
 ## Included files
-- `DESeq2_baseR_analysis.R` — base R implementation
-- `DESeq2_tidyverse_analysis.R` — tidyverse-based workflow
-- `DESeq2_analysis_explained.Rmd` — annotated explanatory analysis file
-- `baseRworkingscript.R` — working script with additional exploration
-- `sample_descriptive_stats_raw.csv` — descriptive stats for raw data
-- `sample_descriptive_stats_normalized.csv` — normalized sample metrics
-- `all_DEGs.csv` — filtered differentially expressed genes
-
-## Tools used
-- R
-- DESeq2
-- Bioconductor
-- ggplot2 / tidyverse
-
-## How to run
-1. Open RStudio.
-2. Install required packages.
-3. Run the analysis script for the chosen workflow.
-4. Review output tables and plots.
-
-## Objective
-This project demonstrates gene expression analysis, RNA-seq preprocessing, differential expression testing, and biological interpretation of significant genes in a cancer-related dataset.
+- `DESeq2_baseR_analysis.R` — base R differential expression workflow
+- `DESeq2_tidyverse_analysis.R` — tidyverse-based DESeq2 analysis
+- `DESeq2_analysis_explained.Rmd` — annotated explanation of the analysis
+- `baseRworkingscript.R` — exploratory working script
+- `all_DEGs.csv` — differentially expressed genes output
+- `all_DEGs_tidy.csv` — tidy-formatted DEG output
+- `sample_descriptive_stats_raw.csv` — raw sample summary statistics
+- `sample_descriptive_stats_normalized.csv` — normalized sample summary statistics
