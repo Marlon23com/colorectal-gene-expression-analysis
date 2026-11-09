@@ -1,0 +1,16 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# R temporary files
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Generated outputs
+*.csv
+*.tsv
+
+# Editor files
+.vscode/
