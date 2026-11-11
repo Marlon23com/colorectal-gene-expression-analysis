@@ -1,6 +1,6 @@
 ---
 title: "Comprehensive DESeq2 RNA-Seq Analysis: Code, Rationale, and Biological Insights"
-author: "[Your Name]"
+author: "Tinotenda Marlon Makwara"
 date: "`r Sys.Date()`"
 output: html_document
 ---
